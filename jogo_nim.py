@@ -21,7 +21,6 @@ def usuario_escolhe_jogada (n, m):
     print(" ")
 
     #Verifica se os valores inseridos são correspondentes 
-    #Não sei como, mas deu certo
     while useremove > m or useremove <= 0 or useremove > n:  
         print(" ")  
         print("Oops! Jogada inválida! Tente de novo.")
@@ -36,32 +35,33 @@ def partida ():
     m = int(input("Limite de peças por rodada? "))
 
     # Controla a vez do computador e do usuário
-    controla = True
+    controle = True
 
     # decide quem iniciará o jogo
     if n % (m + 1) == 0: 
         print("")
         print("Voce começa!")
-        controla = False
+        controle = False
     else:
         print("")
         print("Computador começa!")
         print("")
 
-    # Execute enquanto houver peças no jogo:
+    # Continua enquanto estiver peça no jogo
     while n > 0:
 
-        if controla:
-            controla = False 
-            jogada = computador_escolhe_jogada(n, m)
-            print("Computador retirou {} peças.".format(jogada))
+        # condição para chamar uma das duas funções 
+        if controle:
+            controle = False 
+            rodada = computador_escolhe_jogada(n, m)
+            print("Computador retirou {} peças.".format(rodada))
         else:
-            controla = True 
-            jogada = usuario_escolhe_jogada(n, m)
-            print("Você retirou {} peças.".format(jogada))
+            controle = True 
+            rodada = usuario_escolhe_jogada(n, m)
+            print("Você retirou {} peças.".format(rodada))
 
         # Retira as peças do jogo:
-        n = n - jogada
+        n = n - rodada
 
         # Mostra o estado atual do jogo:
         print("Restam apenas {} peças em jogo.".format(n))
@@ -85,6 +85,7 @@ def campeonato():
  
 tipo_jogo = 0
 
+# verifica a escolha do usuário
 while tipo_jogo == 0:
 
     print("Bem-vindo ao jogo NIM! Escolha: ")
@@ -96,14 +97,15 @@ while tipo_jogo == 0:
         print("Voce escolheu partida isolada!")
         print("")
         partida()
-        break 
+        break # para sair do loop 
 
     if tipo_jogo == 2:
         print(" ")
         print("Voce escolheu campeonato!")
         print("")
         campeonato()
-        break 
+        break # para sair do loop
 
     else:
         print("Opção invalida")
+        tipo_jogo = 0 # condição para repetir o while
