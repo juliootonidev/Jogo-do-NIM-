@@ -35,18 +35,18 @@ def partida ():
     n = int(input("Quantas peças? "))
     m = int(input("Limite de peças por rodada? "))
 
-    # Decide quem iniciará o jogo:
-    if n % (m + 1) == 0: 
-        print(" ")
-        print("Voce começa!")
-        print(" ")
-    else:
-        print(" ")
-        print("Computador começa!")
-        print(" ")
-
     # Controla a vez do computador e do usuário
     controla = True
+
+    # decide quem iniciará o jogo
+    if n % (m + 1) == 0: 
+        print("")
+        print("Voce começa!")
+        controla = False
+    else:
+        print("")
+        print("Computador começa!")
+        print("")
 
     # Execute enquanto houver peças no jogo:
     while n > 0:
@@ -94,10 +94,16 @@ while tipo_jogo == 0:
 
     if tipo_jogo == 1:
         print("Voce escolheu partida isolada!")
+        print("")
         partida()
+        break 
+
     if tipo_jogo == 2:
         print(" ")
         print("Voce escolheu campeonato!")
+        print("")
         campeonato()
+        break 
+
     else:
         print("Opção invalida")
